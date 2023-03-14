@@ -19,7 +19,7 @@ input.addEventListener("keyup", (e) => {
 })
 
 async function fetchMovies(name) {
-    let url = `http://www.omdbapi.com/?apikey=${api__key}&t=${name}`;
+    let url = `https://www.omdbapi.com/?apikey=${api__key}&t=${name}`;
     let response = await fetch(url)
     let data = await response.json()
     if (data.Response === "False") {
