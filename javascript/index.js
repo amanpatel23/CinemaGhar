@@ -5,8 +5,11 @@ let favourites__container = document.getElementById("my__favourites__list");
 
 const api__key = 93059205;
 
+
 let suggested__list = []
-let favourites__list = []
+let favourites__arr = []
+
+displayFavouritesMovies();
 
 input.addEventListener("keyup", (e) => {
     let name = input.value.trim();
@@ -52,6 +55,13 @@ async function fetchMovies(name) {
 function displaySuggestedMovies() {
     suggested__container.innerHTML = "";
 
+    let favourites__list;
+    if (localStorage.getItem("favourites__arr__key") === null) {
+        favourites__list = favourites__arr;
+    }else {
+        favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
+    }
+
     suggested__list.forEach(movie => {
         const movie__card = document.createElement('div');
         movie__card.setAttribute('class', 'movie__card');
@@ -85,6 +95,13 @@ function displaySuggestedMovies() {
 }
 
 document.addEventListener("click", e => {
+
+    if (localStorage.getItem("favourites__arr__key") === null) {
+        favourites__list = favourites__arr;
+    }else {
+        favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
+    }
+
     let target = e.target;
     if (target.classList.contains("fa-heart")) {
         let movie__id = target.parentElement.getAttribute("data-id")
@@ -111,6 +128,7 @@ document.addEventListener("click", e => {
             target.style.color = "#000";
         }
 
+        localStorage.setItem("favourites__arr__key", JSON.stringify(favourites__list));
 
         displayFavouritesMovies();
     } else if (target.classList.contains("fa-trash")) {
@@ -124,6 +142,8 @@ document.addEventListener("click", e => {
 
         favourites__list.splice(ii, 1);
 
+        localStorage.setItem("favourites__arr__key", JSON.stringify(favourites__list));
+
         displayFavouritesMovies();
         displaySuggestedMovies();
     }
@@ -132,6 +152,12 @@ document.addEventListener("click", e => {
 function displayFavouritesMovies() {
     favourites__container.innerHTML = "";
 
+    if (localStorage.getItem("favourites__arr__key") === null) {
+        favourites__list = favourites__arr;
+    }else {
+        favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
+    }
+    
     favourites__list.forEach(curr__movie => {
 
         const favourite__card = document.createElement('div');
