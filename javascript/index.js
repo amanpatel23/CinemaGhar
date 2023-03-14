@@ -31,7 +31,7 @@ async function fetchMovies(name) {
                         Poster: data.Poster, 
                         imdbID: data.imdbID, 
                         imdbRating: data.imdbRating,
-                        Release: data.Released
+                        Release: data.Released,
                     };
     
     let isPresent = false;
@@ -45,7 +45,6 @@ async function fetchMovies(name) {
     if (!isPresent) {
         suggested__list.push(curr__movie);
     }
-    // console.log(suggested__list);
     
     displaySuggestedMovies();
 }
@@ -56,6 +55,14 @@ function displaySuggestedMovies() {
     suggested__list.forEach(movie => {
         const movie__card = document.createElement('div');
         movie__card.setAttribute('class', 'movie__card');
+
+        let isInFavourites = false;
+        for (let i = 0; i < favourites__list.length; i++) {
+            if (favourites__list[i].imdbID === movie.imdbID) {
+                isInFavourites = true;
+            }
+        }
+
         movie__card.innerHTML = `
             <div class="card__image">
                 <img src="${movie.Poster === "N/A" ? "./assets/imageNotFound.webp" : movie.Poster}" alt="poster image" />
@@ -68,7 +75,7 @@ function displaySuggestedMovies() {
                         <p class="movie__rating__num">${movie.imdbRating}</p>
                     </div>
                 </div>
-                <div class="card__desc__ss" data-id="${movie.imdbID}">
+                <div class="card__desc__ss ${isInFavourites ? " iimport" : ""}" data-id="${movie.imdbID}">
                     <i class="fa-solid fa-heart"></i>
                 </div>
             </div>
@@ -80,7 +87,7 @@ function displaySuggestedMovies() {
 document.addEventListener("click", e => {
     let target = e.target;
     if (target.classList.contains("fa-heart")) {
-        const movie__id = target.parentElement.getAttribute("data-id")
+        let movie__id = target.parentElement.getAttribute("data-id")
         let isPresent = false;
         let idx = -1;
         for (let i = 0; i < favourites__list.length; i++) {
@@ -103,8 +110,22 @@ document.addEventListener("click", e => {
             favourites__list.splice(idx, 1);
             target.style.color = "#000";
         }
-        // console.log(favourites__list);
+
+
         displayFavouritesMovies();
+    } else if (target.classList.contains("fa-trash")) {
+        let movie__id = target.parentElement.getAttribute("data-fav-id");
+        let ii = -1;
+        for (let i = 0; i < favourites__list.length; i++) {
+            if (favourites__list[i].imdbID === movie__id) {
+                ii = i;
+            }
+        }
+
+        favourites__list.splice(ii, 1);
+
+        displayFavouritesMovies();
+        displaySuggestedMovies();
     }
 })
 
@@ -126,7 +147,7 @@ function displayFavouritesMovies() {
                 </div>
             </div>
             <div class="favourite__card__ss">
-                <div class="f__card__ss__icon">
+                <div class="f__card__ss__icon" data-fav-id="${curr__movie.imdbID}">
                     <i class="fa-solid fa-trash"></i>
                 </div>
             </div>

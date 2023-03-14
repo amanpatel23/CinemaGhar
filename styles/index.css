@@ -173,13 +173,17 @@ body {
     cursor: pointer;
 }
 
+.iimport i {
+    color: red;
+}
+
 .favourite__card {
     display: flex;
     background: #f5c518;
     justify-content: space-between;
     align-items: center;
     padding: 8px 14px;
-    margin-top: 6px;
+    margin-top: 8px;
 }
 
 .favourite__card__ff {
@@ -200,4 +204,9 @@ body {
 .f__card__ff__desc__yor {
     font-weight: 500;
     font-size: 1rem;
+}
+
+.f__card__ss__icon i:hover {
+    cursor: pointer;
+    font-size: 1.2rem;
 }
