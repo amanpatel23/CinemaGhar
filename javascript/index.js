@@ -89,6 +89,9 @@ function displaySuggestedMovies() {
                     <i class="fa-solid fa-heart"></i>
                 </div>
             </div>
+            <div class="know__more" data-btn-id="${movie.imdbID}">
+                <button class="know__more__button">Know More</button>
+            </div>
         `
         suggested__container.prepend(movie__card);
     })
@@ -146,6 +149,10 @@ document.addEventListener("click", e => {
 
         displayFavouritesMovies();
         displaySuggestedMovies();
+    } else if (target.classList.contains("know__more__button")) {
+        let movie__id = target.parentElement.getAttribute("data-btn-id");
+        localStorage.setItem("movie__id", JSON.stringify(movie__id));
+        window.open("./singleMoviePage.html", "_blank");
     }
 })
 
@@ -183,3 +190,6 @@ function displayFavouritesMovies() {
     })
 }
 
+function openNewPage() {
+    console.log("hi");
+}
