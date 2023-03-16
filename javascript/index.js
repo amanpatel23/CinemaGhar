@@ -1,16 +1,30 @@
 
+// getting the html elements to work on
+// getting the input search input
 let input = document.getElementById("search__input").firstElementChild;
+
+// getting the movie container to show the current movie result
 let suggested__container = document.getElementById("movie__cards__grid");
+
+// getting the favourites container to show the favourite movies list
 let favourites__container = document.getElementById("my__favourites__list");
 
+// api key that I got from the omdb
 const api__key = 93059205;
 
-
+// array to store the current searched movies
 let suggested__list = []
+
+// array to store my favourite movies list
 let favourites__arr = []
 
+// setting the input inner text to empty string on refreshing or loading
+input.innerHTML = "";
+
+// display the favourite movies list on refreshing or loading
 displayFavouritesMovies();
 
+// listen keyup event on the input field
 input.addEventListener("keyup", (e) => {
     let name = input.value.trim();
     if (name === "") {
@@ -18,10 +32,15 @@ input.addEventListener("keyup", (e) => {
         displaySuggestedMovies();
         return;
     }
+
+    // calling the fetchMovies function to 
+    // fetch the movie details of the movie name typed in the input field
     fetchMovies(name);
 })
 
+// async fetchMovies function
 async function fetchMovies(name) {
+    // api url to fetch the movie details
     let url = `https://www.omdbapi.com/?apikey=${api__key}&t=${name}`;
     let response = await fetch(url)
     let data = await response.json()
@@ -29,6 +48,7 @@ async function fetchMovies(name) {
         return;
     }
 
+    // getting the details and storing it as object
     let curr__movie = {
                         Title: data.Title, 
                         Poster: data.Poster, 
@@ -49,12 +69,14 @@ async function fetchMovies(name) {
         suggested__list.push(curr__movie);
     }
     
+    // display the movies in the suggested movies section
     displaySuggestedMovies();
 }
 
 function displaySuggestedMovies() {
     suggested__container.innerHTML = "";
 
+    // getting the favourites list array
     let favourites__list;
     if (localStorage.getItem("favourites__arr__key") === null) {
         favourites__list = favourites__arr;
@@ -62,6 +84,7 @@ function displaySuggestedMovies() {
         favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
     }
 
+    // creating the movie card for each movie in the suggested list array
     suggested__list.forEach(movie => {
         const movie__card = document.createElement('div');
         movie__card.setAttribute('class', 'movie__card');
@@ -73,6 +96,7 @@ function displaySuggestedMovies() {
             }
         }
 
+        // defining the html body for each card
         movie__card.innerHTML = `
             <div class="card__image">
                 <img src="${movie.Poster === "N/A" ? "./assets/imageNotFound.webp" : movie.Poster}" alt="poster image" />
@@ -93,12 +117,16 @@ function displaySuggestedMovies() {
                 <button class="know__more__button">Know More</button>
             </div>
         `
+        // appending the card to the suggested container
         suggested__container.prepend(movie__card);
     })
 }
 
+// listen for the event listeners on the document
 document.addEventListener("click", e => {
 
+    // getting the favourites list array
+    let favourites__list;
     if (localStorage.getItem("favourites__arr__key") === null) {
         favourites__list = favourites__arr;
     }else {
@@ -131,9 +159,12 @@ document.addEventListener("click", e => {
             target.style.color = "#000";
         }
 
+        // storing the favourites list array in the localstorage
         localStorage.setItem("favourites__arr__key", JSON.stringify(favourites__list));
 
+        // calling the function to display the my favourites movies
         displayFavouritesMovies();
+
     } else if (target.classList.contains("fa-trash")) {
         let movie__id = target.parentElement.getAttribute("data-fav-id");
         let ii = -1;
@@ -145,26 +176,36 @@ document.addEventListener("click", e => {
 
         favourites__list.splice(ii, 1);
 
+        // storing the favourites list array in the localstorage
         localStorage.setItem("favourites__arr__key", JSON.stringify(favourites__list));
 
+        // calling the function to display the favourite movies
         displayFavouritesMovies();
+        // calling the function to display the current searched movies
         displaySuggestedMovies();
+
     } else if (target.classList.contains("know__more__button")) {
         let movie__id = target.parentElement.getAttribute("data-btn-id");
         localStorage.setItem("movie__id", JSON.stringify(movie__id));
+
+        // opening single movie page
         window.open("./singleMoviePage.html", "_blank");
     }
 })
 
+// function to display favourite movies from the list
 function displayFavouritesMovies() {
     favourites__container.innerHTML = "";
 
+    // getting the favourites movies array
+    let favourites__list;
     if (localStorage.getItem("favourites__arr__key") === null) {
         favourites__list = favourites__arr;
     }else {
         favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
     }
     
+    // creating the card for each favourite movie in the list
     favourites__list.forEach(curr__movie => {
 
         const favourite__card = document.createElement('div');
@@ -186,6 +227,7 @@ function displayFavouritesMovies() {
             </div>
         `
 
+        // appending the favourite movie card to favourites movie section
         favourites__container.prepend(favourite__card);
     })
 }

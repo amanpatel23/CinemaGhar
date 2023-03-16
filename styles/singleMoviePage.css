@@ -1,15 +1,19 @@
+
+/* added some default stylings */ 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* added styling to the body */
 body {
     font-family: 'Lato', sans-serif;
     height: 100vh;
     width: 100vw;
 }
 
+/* styling movie__info div */
 #movie__info {
     background: linear-gradient(#121212, #000);
     width: 100%;
@@ -18,8 +22,8 @@ body {
     align-items: center;
 }
 
+/* styling the movie info container */
 #movie__info__container {
-    /* background: #fff; */
     width: 80%;
     margin: auto;
     color: #fff;
@@ -32,6 +36,7 @@ body {
     padding: 0 8px;
 }
 
+/* setting dimensions of the image */
 #movie__info__ss__ff img {
     height: 250px;
     background-position: cover;
@@ -44,6 +49,7 @@ body {
     row-gap: 12px;
 }
 
+/* styled the description texts */
 #movie__title p {
     font-size: 2rem;
     font-weight: 700;
@@ -55,7 +61,6 @@ body {
     color: #33c5f3;
 }
 
-
 #movie__rating__data {
     margin-top: 4px;
     display: flex;
@@ -66,6 +71,7 @@ body {
     color: #f5c518;
 }
 
+/* styled the 2nd part of the movie info div */
 #movie__info__ss {
     background: #f5c518;
     display: flex;

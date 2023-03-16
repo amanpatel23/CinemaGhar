@@ -1,18 +1,30 @@
+
+// getting the html elements in javascript
+// getting the movie__info div
 let movie__info = document.getElementById("movie__info");
 
+// my api key that I got from omdb
 const api__key = 93059205;
+
+// getting the movie id from local storage
 const movie__id = JSON.parse(localStorage.getItem("movie__id"));
 
+// function used to fetch movie details 
 async function fetchMovie() {
     let url = `https://www.omdbapi.com/?apikey=${api__key}&i=${movie__id}`;
     let response = await fetch(url)
     let data = await response.json()
 
+    // calling the function to display movie details
     displayMovieDetails(data);
 }
 
+// function to display the movie details in a html div
 function displayMovieDetails(data) {
+
+    // creaing an html element
     let movie__info__container = document.createElement('div');
+    // assigining class to it
     movie__info__container.setAttribute('id', 'movie__info__container');
     movie__info__container.innerHTML = 
         `
@@ -60,8 +72,9 @@ function displayMovieDetails(data) {
             </div>
         </div>
         `
-
+        // appending the card to the movie__info
         movie__info.prepend(movie__info__container)
 }
 
+// calling the fetchMovie function
 fetchMovie();

@@ -1,15 +1,18 @@
+/* adding some default styling */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* setting styles for the body */
 body {
     font-family: 'Lato', sans-serif;
     background: blue;
     height: 100vh;
 }
 
+/* styling navbar */
 #nav__bar {
     height: 10vh;
     background: #121212;
@@ -19,6 +22,7 @@ body {
     position: sticky;
 }
 
+/* styling navbar container */
 #nav__container {
     display: flex;
     width: 100%;
@@ -27,30 +31,32 @@ body {
     padding: 14px 12px;
 }
 
+/* styling the logo */
 #logo {
     font-size: 1.2rem;
     background: #f5c518;
     padding: 4px 8px;
-    /* border-radius: 6px; */
 }
 
 #logo__text span {
     font-weight: 900;
 }
 
+/* styling the searchbar */
 #search__div {
     display: flex;
     column-gap: 8px;
     background: #fff;
     padding: 8px 18px;
-    /* border-radius: 4px; */
 }
 
+/* styling the search icon */
 #search__icon {
     font-size: 1.2rem;
     color: #757575;
 }
 
+/* styling the actual input */
 #search__input input {
     width: 400px;
     border: none;
@@ -60,56 +66,60 @@ body {
     font-weight: 100;
 }
 
+/* sytling the input placeholder text */
 #search__input input::placeholder {
     font-size: 1rem;
 }
 
+/* styling the favourites list */
 #favourites__list {
     display: flex;
     align-items: center;
     column-gap: 8px;
     background: #33c5f3;
     padding: 4px 8px;
-    /* border-radius: 4px; */
 }
 
+/* styling the favourite heart icon */
 #favourites__icon {
     color: red;
 }
 
+/* styling the favourites text */
 #favourites__text {
     color: #000;
     font-weight: 400;
     letter-spacing: 0.1rem;
 }
 
+/* styling the actual movie section */
 #movie__section {
     height: 90vh;
     display: flex;
 }
 
+/* styling for movie cards section */
 #movie__cards {
     overflow-y: scroll;
     width: 70%;
     background: #0a0a0a;
+    padding-bottom: 10px;
 }
 
+/* styling for the favourites section */
 #my__favourites {
     width: 30%;
     background: #0a0a0a;
     overflow-y: scroll;
-    /* display: none; */
 }
 
-#movie__cards {
-    padding: 14px;
-}
-
+/* styling movie cards grid section */
 #movie__cards__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 
+/* styling each movie card */
 .movie__card {
     width: 200px;
     height: auto;
@@ -120,11 +130,13 @@ body {
     box-shadow: 1px 1px 16px #33c5f3;
 }
 
+/* styling card image div */
 .card__image {
     width: 100%;
     margin: auto;
 }
 
+/* setting dimensions of the image */
 .card__image img{
     width: 100%;
     height: 250px;
@@ -132,9 +144,9 @@ body {
     background-repeat: no-repeat;
 }
 
+/* styling the description section of the card */
 .card__desc {
     color: #000;
-    /* margin-top: 6px; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -142,9 +154,12 @@ body {
     background: #33c5f3;
 }
 
+/* styling the movie tittle */
 .movie__title {
     font-weight: 900;
 }
+
+/* added styles to the description texts of the movie card */
 
 .movie__rating__num {
     font-weight: 700;
@@ -165,6 +180,7 @@ body {
     float: right;
 }
 
+/* adding style while hovering on hear button */
 .card__desc__ss i:hover {
     color: red;
     cursor: pointer;
@@ -174,6 +190,7 @@ body {
     color: red;
 }
 
+/* adding styles to each favourite card in the favourite list */
 .favourite__card {
     display: flex;
     background: #f5c518;
@@ -183,16 +200,20 @@ body {
     margin-top: 8px;
 }
 
+/* adding style to the favourite card image section */
 .favourite__card__ff {
     display: flex;
     align-items: center;
     column-gap: 6px;
 }
 
+/* setting the dimensions of the favourite card image */
 .f__card__ff__img img {
     height: 100px;
     background-position: cover;
 }
+
+/* added styles to the description text of the favourite movie card */
 
 .f__card__ff__desc__title {
     font-weight: 900;
@@ -208,6 +229,7 @@ body {
     font-size: 1.2rem;
 }
 
+/* adding style to the know more button of the movie card */
 .know__more button {
     background: #000;
     border: none;
@@ -219,6 +241,7 @@ body {
     letter-spacing: 0.1rem;
 }
 
+/* adding style to the know more button while hovering */
 .know__more button:hover {
     cursor: pointer;
 }
