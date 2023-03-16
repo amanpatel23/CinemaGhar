@@ -19,7 +19,7 @@ let suggested__list = []
 let favourites__arr = []
 
 // setting the input inner text to empty string on refreshing or loading
-input.innerHTML = "";
+input.value = "";
 
 // display the favourite movies list on refreshing or loading
 displayFavouritesMovies();
