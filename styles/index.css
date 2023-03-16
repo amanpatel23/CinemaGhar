@@ -73,10 +73,6 @@ body {
     /* border-radius: 4px; */
 }
 
-#favourites__list:hover {
-    cursor: pointer;
-}
-
 #favourites__icon {
     color: red;
 }

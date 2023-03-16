@@ -34,7 +34,7 @@ async function fetchMovies(name) {
                         Poster: data.Poster, 
                         imdbID: data.imdbID, 
                         imdbRating: data.imdbRating,
-                        Release: data.Released,
+                        Release: data.Year,
                     };
     
     let isPresent = false;
@@ -190,6 +190,4 @@ function displayFavouritesMovies() {
     })
 }
 
-function openNewPage() {
-    console.log("hi");
-}
+
