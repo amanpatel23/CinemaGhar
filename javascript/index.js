@@ -208,27 +208,29 @@ function displayFavouritesMovies() {
     // creating the card for each favourite movie in the list
     favourites__list.forEach(curr__movie => {
 
-        const favourite__card = document.createElement('div');
-        favourite__card.setAttribute('class', "favourite__card");
-        favourite__card.innerHTML = `
-            <div class="favourite__card__ff">
-                <div class="f__card__ff__img">
-                <img src="${curr__movie.Poster === "N/A" ? "./assets/imageNotFound.webp" : curr__movie.Poster}" alt="poster image" />
+        if (curr__movie !== null) {
+            const favourite__card = document.createElement('div');
+            favourite__card.setAttribute('class', "favourite__card");
+            favourite__card.innerHTML = `
+                <div class="favourite__card__ff">
+                    <div class="f__card__ff__img">
+                    <img src="${curr__movie.Poster === "N/A" ? "./assets/imageNotFound.webp" : curr__movie.Poster}" alt="poster image" />
+                    </div>
+                    <div class="f__card__ff__desc">
+                        <p class="f__card__ff__desc__title">${curr__movie.Title}</p>
+                        <p class="f__card__ff__desc__yor">${curr__movie.Release}</p>
+                    </div>
                 </div>
-                <div class="f__card__ff__desc">
-                    <p class="f__card__ff__desc__title">${curr__movie.Title}</p>
-                    <p class="f__card__ff__desc__yor">${curr__movie.Release}</p>
+                <div class="favourite__card__ss">
+                    <div class="f__card__ss__icon" data-fav-id="${curr__movie.imdbID}">
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="favourite__card__ss">
-                <div class="f__card__ss__icon" data-fav-id="${curr__movie.imdbID}">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-            </div>
-        `
+            `
 
-        // appending the favourite movie card to favourites movie section
-        favourites__container.prepend(favourite__card);
+            // appending the favourite movie card to favourites movie section
+            favourites__container.prepend(favourite__card);
+        }
     })
 }
 
