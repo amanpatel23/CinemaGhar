@@ -5,9 +5,10 @@ When a user clicks on a particular movie card, it opens up a new movie page cont
 Users can also add any movie to their favourites list, which stores the movies in local storage of the browser.
 
 ### Screenshots
-![Screenshot__1](./assets/CinemaGharScreenshot__1.png)
+![CinemaGharScreenshot__1](https://user-images.githubusercontent.com/53902012/225822686-c203f6d3-93e2-44eb-90ff-eaac49d3071c.png)
 ***
-![Screenshot__2](./assets/CinemaGharScreenshot__2.png)
+![CinemaGharScreenshot__2](https://user-images.githubusercontent.com/53902012/225822755-ae0593d3-3a9d-4caf-b11c-e22dbc194e0e.png)
+
 
 ### Hosted Link: [CinemaGhar](https://amanpatel23.github.io/CinemaGhar/)
 
