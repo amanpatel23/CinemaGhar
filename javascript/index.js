@@ -15,8 +15,14 @@ const api__key = 93059205;
 // array to store the current searched movies
 let suggested__list = []
 
-// array to store my favourite movies list
-let favourites__arr = []
+// array to store the current searched movies
+let favourites__list;
+
+if (localStorage.getItem("favourites__arr__key") !== null) {
+    favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
+} else {
+    favourites__list = [];
+}
 
 // setting the input inner text to empty string on refreshing or loading
 input.value = "";
@@ -76,13 +82,6 @@ async function fetchMovies(name) {
 function displaySuggestedMovies() {
     suggested__container.innerHTML = "";
 
-    // getting the favourites list array
-    let favourites__list;
-    if (localStorage.getItem("favourites__arr__key") === null) {
-        favourites__list = favourites__arr;
-    }else {
-        favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
-    }
 
     // creating the movie card for each movie in the suggested list array
     suggested__list.forEach(movie => {
@@ -125,13 +124,6 @@ function displaySuggestedMovies() {
 // listen for the event listeners on the document
 document.addEventListener("click", e => {
 
-    // getting the favourites list array
-    let favourites__list;
-    if (localStorage.getItem("favourites__arr__key") === null) {
-        favourites__list = favourites__arr;
-    }else {
-        favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
-    }
 
     let target = e.target;
     if (target.classList.contains("fa-heart")) {
@@ -196,14 +188,6 @@ document.addEventListener("click", e => {
 // function to display favourite movies from the list
 function displayFavouritesMovies() {
     favourites__container.innerHTML = "";
-
-    // getting the favourites movies array
-    let favourites__list;
-    if (localStorage.getItem("favourites__arr__key") === null) {
-        favourites__list = favourites__arr;
-    }else {
-        favourites__list = JSON.parse(localStorage.getItem("favourites__arr__key"));
-    }
     
     // creating the card for each favourite movie in the list
     favourites__list.forEach(curr__movie => {
